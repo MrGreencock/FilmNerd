@@ -1,0 +1,346 @@
+
+.wrapper {
+	max-width: 100%;
+	margin-top: 15px;
+}
+.carousel-inner {
+	height: 500px;
+}
+.carousel-item {
+	height: 500px;
+	transition: .5s ease-in-out;
+}
+.carousel-item img {
+	max-height: 750px;
+}
+.carousel-caption {
+	background-color: grey;
+	opacity: 75%;
+}
+.carousel-caption h3, .carousel-caption p {
+  	font-weight: bold;
+  	color: #fff;
+}
+.card {
+	width: 250px;
+	height: 400px;
+}
+.card p {
+	font-size: 15px;
+}
+.col-lg-3 {
+	max-width: 50%;
+	margin: 0 auto;
+}
+  
+  .container {
+	padding: 20px;
+	width: 100%;
+  }
+  
+  input[type=text], input[type=submit] {
+	width: 100%;
+	padding: 12px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+  }
+  
+  input[type=checkbox] {
+	margin-top: 16px;
+  }
+  
+  input[type=submit] {
+	background-color: #ffc107;
+	color: white;
+	border-color: #ffc107;
+  }
+  
+  input[type=submit]:hover {
+	opacity: 0.8;
+  }
+  .search[type=text] {
+	margin: 0;
+  }
+  .flip-card {
+	background-color: transparent;
+	height: 250px;
+	width: 150px;
+	perspective: 1000px;
+  }
+  
+  .flip-card-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.6s;
+	transform-style: preserve-3d;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .flip-card:hover .flip-card-inner {
+	transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+	background-color: #bbb;
+	color: black;
+  }
+  
+  .flip-card-back {
+	background-color: transparent;
+	color: white;
+	opacity: 50%;
+	width: 100%;
+	transform: rotateY(180deg);
+  }
+  .banner {
+	height: 350px;
+	background-size: cover;
+	background-position: center;
+	margin-left: auto;
+	margin-right: auto;
+  }
+  .cover {
+	height: 250px;
+	margin: 0 auto;
+	display:block;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
+  .cover:hover {
+	opacity: 0.75;
+  }
+  .director {
+	height: 50px;
+	border-radius: 100%;
+	margin-right: 5px;
+  }
+  .actor {
+	height: 50px;
+	border-radius: 100%;
+	margin-right: 5px;
+	margin-bottoM: 5px;
+  }
+  .table td {
+	border-top: none;
+  }
+  .data {
+	margin: 0;
+	float: left;
+	max-width: 33.3333%;
+  }
+  .description {
+	margin-left: auto;
+	margin-right: 5px;
+	max-width: 66.6667%;
+	height: 100%;
+  }
+  .btn-grey{
+	color:#FFF;
+}
+.rating-block{
+	padding:15px 15px 20px 15px;
+	border-radius:3px;
+}
+.bold{
+	font-weight:700;
+}
+.padding-bottom-7{
+	padding-bottom:7px;
+}
+
+.review-block{
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+}
+.review-block-name{
+	font-size:12px;
+	margin:10px 0;
+}
+.review-block-date{
+	font-size:12px;
+}
+.review-block-rate{
+	font-size:13px;
+	margin-bottom:15px;
+}
+.review-block-title{
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.review-block-description{
+	font-size:13px;
+}
+.container{
+	position: relative;
+	width: 100%;
+	padding: 20px 30px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	border-top: 1px solid gray;
+  }
+  .container .post{
+	display: none;
+  }
+  .container .text{
+	font-size: 25px;
+	color: #666;
+	font-weight: 500;
+  }
+  .container .edit{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	font-size: 16px;
+	color: #666;
+	font-weight: 500;
+	cursor: pointer;
+  }
+  .container .edit:hover{
+	text-decoration: underline;
+  }
+  .container .star-widget input{
+	display: none;
+  }
+  .star-widget label{
+	font-size: 40px;
+	color: #444;
+	padding: 10px;
+	float: right;
+	transition: all 0.2s ease;
+  }
+  input:not(:checked) ~ label:hover,
+  input:not(:checked) ~ label:hover ~ label{
+	color: #fd4;
+  }
+  input:checked ~ label{
+	color: #fd4;
+  }
+  input#rate-5:checked ~ label{
+	color: #fe7;
+	text-shadow: 0 0 20px #952;
+  }
+  #rate-1:checked ~ form header:before{
+	content: "Nagyon rossz";
+  }
+  #rate-2:checked ~ form header:before{
+	content: "Gyenge";
+  }
+  #rate-3:checked ~ form header:before{
+	content: "Nem rossz";
+  }
+  #rate-4:checked ~ form header:before{
+	content: "Jó";
+  }
+  #rate-5:checked ~ form header:before{
+	content: "Kiváló";
+  }
+  .container form{
+	display: none;
+  }
+  input:checked ~ form{
+	display: block;
+  }
+  form header{
+	width: 100%;
+	font-size: 25px;
+	color: #fe7;
+	font-weight: 500;
+	margin: 5px 0 20px 0;
+	text-align: center;
+	transition: all 0.2s ease;
+  }
+  form .textarea{
+	height: 100px;
+	width: 100%;
+	overflow: hidden;
+  }
+  form .textarea textarea{
+	height: 100%;
+	width: 100%;
+	outline: none;
+	color: #eee;
+	border: 1px solid #333;
+	background: #222;
+	padding: 10px;
+	font-size: 17px;
+	resize: none;
+  }
+  .textarea textarea:focus{
+	border-color: #444;
+  }
+  form .btn{
+	height: 45px;
+	width: 100%;
+	margin: 15px 0;
+  }
+  form .btn button{
+	height: 100%;
+	width: 100%;
+	border: 1px solid #444;
+	outline: none;
+	background: #222;
+	color: #999;
+	font-size: 17px;
+	font-weight: 500;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: all 0.3s ease;
+  }
+  form .btn button:hover{
+	background: #1b1b1b;
+  }
+  .comment {
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	width: 500px;
+	margin: auto;
+  }
+  .comment img {
+	width: 50px;
+	margin-right: 5px;
+  }
+@media (max-width: 500px) {
+	.carousel-inner {
+		height: 200px;
+	}
+	.carousel-item, .carousel-item img {
+		height: 200px;
+	}
+
+	.row {
+		display: block;
+	}
+	.col-lg-3 {
+		margin-left: 15%;
+	}
+	.newsletter-img {
+		width: 290px;
+	}
+	.data {
+		float: none;
+	}
+	iframe {
+		width: 100%;
+	}
+	.comment {
+		width: 300px;
+	}
+
+}
