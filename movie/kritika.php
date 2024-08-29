@@ -1,0 +1,191 @@
+<?php 
+
+$apiKey = "042affdd15dc4426dae949def44f0cbb";
+$movieId = "11902";
+$apiUrl = "https://api.themoviedb.org/3/movie/$movieId/credits?api_key=$apiKey";
+
+// cURL inicializálása
+$ch = curl_init();
+
+// cURL beállítása
+curl_setopt($ch, CURLOPT_URL, $apiUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// API válaszának lekérése
+$response = curl_exec($ch);
+
+// cURL bezárása
+curl_close($ch);
+
+$data = json_decode($response, true);
+?>
+<!doctype html>
+<html lang="hu">
+<head>
+	<title>FilmNerd</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css" media="all">
+	<link rel="icon" type="image/png" href="pics/favicon.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body class="bg-secondary">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+	<a class="navbar-brand" href="index.html">FilmNerd</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Jelentkezz be!</a></li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filmek</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Színész</a>
+					<a class="dropdown-item" href="#">Műfaj</a>
+					<a class="dropdown-item" href="#">Ország</a>
+				</div>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Felhasználó</a></li>
+		</ul>
+		<form action="">
+			<input class="form-control search" type="text" placeholder="Search.." name="search">
+		</form>
+
+	</div>
+</nav>
+<div class="banner" style="background-image: url('https://image.tmdb.org/t/p/original/2nerKhF40OzjnGGOyzHcsAw8T53.jpg')"></div>
+<div class="wrapper">
+	<div class="col-sm-6 col-md-4 col-lg-3 data">
+		<table class="table table-sm">
+			<tbody>
+			  <tr>
+				<td colspan="3"><?php $baseImageUrl = "https://image.tmdb.org/t/p/original/"; 
+				// Ellenőrizze, hogy van-e poster_path a $data változóban
+					$fullPosterUrl =  "https://image.tmdb.org/t/p/original/AkH8ipk7XJ8vczglwcsWGDUwHIH.jpg";
+					echo "<img class='cover' src='$fullPosterUrl'>";
+				?>
+				</td>
+			  </tr>
+			  <tr>
+				<td colspan="3"><h1 class="text-center">Underground</h1></td>
+			  </tr>
+			  <tr>
+				<td>1995</td>
+				<td>szerb</td>
+			  </tr>
+			  <tr>
+				<td>Müfaj:</td>
+				<td colspan="2">dráma, vígjáték</td>
+			  </tr>
+			  <tr>
+				<td>Rendező:</td>
+				<td colspan="2"><img src="pics/Emir Kusturica.jpg" class="director">Emir Kusturica</td>
+			  </tr>
+			  <tr>
+				<td>Színészek</td>
+				<td><?php
+
+if (isset($data['cast']) && is_array($data['cast'])) {
+	$count = 0;
+    foreach ($data['cast'] as $actor) {
+		if($count >= 3) {
+			break;
+		}
+        $actorName = $actor['name'];
+        $characterName = $actor['character'];
+        $profilePath = $actor['profile_path']; // Színész fotójának elérési útja
+        $profileUrl = $baseImageUrl . $profilePath; // Teljes URL a színész fotójához
+
+        if ($profilePath) {
+            echo "<img class='actor' src='$profileUrl' alt='$actorName'>";
+        }
+        echo "$actorName mint $characterName <br />";
+
+		$count++;
+    }
+} else {
+    echo "Nem sikerült lekérni a színészek listáját.";
+}
+?>
+</td>
+			  </tr>
+			  <tr>
+				<td>Pontszám</td>
+				<td>4.2/5 <br />500 szavazat</td>
+			  </tr>
+			</tbody>
+		  </table>
+	</div>
+	<div class="col-sm-6 col-md-4 col-lg-3 description">
+		<h1>Közép-Európa legjobb filmje</h1>
+		<p>"A soha véget nem érő háború abszurd és lehetetlen, de - mint tudjuk - a Balkán megvalósult meséje. Belgrád 1941-es német megszállását követően több partizáncsalád a pincékbe menekül. Egy "jóbarát" hadiszállító támogatásával fegyvereket készítenek az ellenállásnak - amin a halálgyáros jól keres. A háborúnak egyszer csak vége lesz, de a barát tovább szövi a szilaj harcok történetét, oly hihetően, hogy egész város éldegél immár a felszín alatt. Azonban 1961-ben néhány partizán felmegy a fényre. Meglepődésük leírhatatlan. Azután 1991-ben újra kitör a háború..." (Cinema)</p>
+		<h1>Kritika</h1>
+		<p>Kritika helye itt...</p>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/rYTvmLvLchs?si=6XYrradcAClIQbuu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	</div>
+</div>
+
+<div class="container">
+	<h1>Itt értékelhet</h1>
+<div class="post">
+	<div class="text">Thanks for rating us!</div>
+	<div class="edit">EDIT</div>
+  </div>
+  <div class="star-widget">
+	<input type="radio" name="rate" id="rate-5">
+	<label for="rate-5" class="fas fa-star"></label>
+	<input type="radio" name="rate" id="rate-4">
+	<label for="rate-4" class="fas fa-star"></label>
+	<input type="radio" name="rate" id="rate-3">
+	<label for="rate-3" class="fas fa-star"></label>
+	<input type="radio" name="rate" id="rate-2">
+	<label for="rate-2" class="fas fa-star"></label>
+	<input type="radio" name="rate" id="rate-1">
+	<label for="rate-1" class="fas fa-star"></label>
+	<form action="#">
+	  <header></header>
+	  <div class="textarea">
+		<textarea cols="30" placeholder="Kritika helye"></textarea>
+	  </div>
+	  <div class="btn">
+		<button type="submit">Post</button>
+	  </div>
+	</form>
+  </div>
+  <h1>Eddigi kommentek</h1>
+  <div class="comment">
+	<img src="pics/profil.png">Felhasználó
+	<span><i class="fas fa-star"></i></span>
+	<span><i class="fas fa-star"></i></span>
+	<span><i class="fas fa-star"></i></span>
+	<p>Aránylag nem rossz, de azért nem jó...</p>
+
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+	const btn = document.querySelector("button");
+	const post = document.querySelector(".post");
+	const widget = document.querySelector(".star-widget");
+	const editBtn = document.querySelector(".edit");
+	btn.onclick = ()=>{
+	  widget.style.display = "none";
+	  post.style.display = "block";
+	  editBtn.onclick = ()=>{
+		widget.style.display = "block";
+		post.style.display = "none";
+	  }
+	  return false;
+	}
+  </script>
+
+</body>
+</html>
