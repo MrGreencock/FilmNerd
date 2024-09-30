@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "fbeni";  // vagy az adatbázis felhasználóneve
-$password = "DutchGiant2";      // vagy az adatbázis jelszava
+$password = "xyz";      // vagy az adatbázis jelszava
 $dbname = "fbeni";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
